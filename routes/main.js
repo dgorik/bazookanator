@@ -12,6 +12,7 @@ router.get("/test", homeController.getTest);
 router.get("/first_report", homeController.getFirstReport);
 router.get("/second_report", homeController.getSecondReport);
 router.get("/profile", ensureAuth, postsController.getProfile);
+router.get("/contact_form_success", homeController.getContactSuccess);
 
 //Route for handling message submissions
 

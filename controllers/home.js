@@ -16,6 +16,10 @@ module.exports = {
   },
 
   getSecondReport: (req, res) => {
-    res.render("first_report.ejs");
+    res.render("second_report.ejs");
+  },
+
+  getContactSuccess: (req, res) => {
+    res.render("/contact_form_success.ejs");
   },
 };

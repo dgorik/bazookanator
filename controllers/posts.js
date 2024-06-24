@@ -28,17 +28,14 @@ module.exports = {
       const mailOptions = {
         from: email,
         to: process.env.EMAIL_USERNAME, // e.g., your email address to receive the contact form
-        subject: 'New Contact Form Submission',
+        subject: 'Bazookanator Question',
         text: `Name: ${first_name + " " + last_name}\nEmail: ${email}\nMessage: ${message}`
       };
-
-      console.log(mailOptions)
-      console.log('hahahah')
 
       // Send the email
       await transporterEmail.sendMail(mailOptions);
 
-      res.status(200).json({ message: 'Your message has been sent successfully' });
+      res.render("contact_form_success.ejs", { user: req.user })
     } catch (err) {
       res.status(500).json({ error: 'There was an error sending your message' });
     }
