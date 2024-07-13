@@ -10,7 +10,21 @@
 
 <body>
 
-  <button class="btn-reports-popup" onclick="menuPopup()"> Dashboards </button>
+  <button class="btn-reports-popup" onclick="menuPopup()">
+    <!-- <div class="original">Reports</div> -->
+    <div class="letters">
+
+      <span>R</span>
+      <span>E</span>
+      <span>P</span>
+      <span>O</span>
+      <span>R</span>
+      <span>T</span>
+      <span>S</span>
+    </div>
+  </button>
+
+  </button>
 
   <div id="leftColumn" class="left_column">
     <div id="left_reports_section">
@@ -79,23 +93,27 @@
 
     <div id="popupOverlay" class="overlay-container">
       <div class="popup-box">
-        <form class="form-container">
-          <h2 style="color: rgb(227, 5, 5);">Bazookanator Q&A</h2>
-          <label class="form-label" for="name">
-            Username:
+        <form class="form">
+          <p class="title">Questions, mate </p>
+          <p class="message"> </p>
+          <div class="flex">
+            <label>
+              <input required="" placeholder="" type="text" class="input">
+              <span>Firstname</span>
+            </label>
+
+            <label>
+              <input required="" placeholder="" type="text" class="input">
+              <span>Lastname</span>
+            </label>
+          </div>
+
+          <label>
+            <input required="" placeholder="" type="email" class="input">
+            <span>Question</span>
           </label>
-          <input class="form-input" type="text" placeholder="Enter Your Name" id="name" name="name" required>
-
-          <label class="form-label" for="email">Email:</label>
-          <input class="form-input" type="email" placeholder="Enter your question" id="email" name="email" required>
+          <button class="submit">Submit</button>
         </form>
-        <button class="btn-close-submit" type="submit">
-          Submit
-        </button>
-
-        <button class="btn-close-popup" onclick="togglePopup()">
-          Close
-        </button>
       </div>
     </div>
     <div class="container4">

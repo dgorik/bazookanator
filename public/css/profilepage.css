@@ -116,6 +116,8 @@ body {
     transition: background-color 0.3s ease;
 }
 
+/* Reports button */
+
 .btn-reports-popup {
     padding: 12px 5px;
     width: 5%;
@@ -127,16 +129,86 @@ body {
     text-decoration: none;
     transition: background-color 0.3s ease;
     position: fixed;
+    border: 1px solid;
+    border-radius: 999px;
+    box-sizing: border-box;
+    font-weight: 900;
+    text-transform: uppercase;
     margin-top: 10px;
+}
+
+.btn-reports-popup:disabled {
+    cursor: default;
+}
+
+.btn-reports-popup:-moz-focusring {
+    outline: auto;
+}
+
+.btn-reports-popup svg {
+    display: block;
+    vertical-align: middle;
+}
+
+.btn-reports-popup [hidden] {
+    display: none;
+}
+
+
+.btn-reports-popup .original {
+    background: #fff;
+    color: #000;
+    display: grid;
+    inset: 0;
+    place-content: center;
+    position: absolute;
+    transition: transform 0.2s cubic-bezier(0.87, 0, 0.13, 1);
+}
+
+.btn-reports-popup .original {
+    transform: translateY(100%);
+}
+
+.btn-reports-popup .letters {
+    display: inline-flex;
     text-align: center;
 }
 
-.button {
-    flex: 1;
-    /* Makes all buttons take equal space */
-    padding: 10px;
-    text-align: center;
+.btn-reports-popup span {
+    opacity: 0;
+    transform: translateY(-15px);
+    transition: transform 0.2s cubic-bezier(0.87, 0, 0.13, 1), opacity 0.2s;
 }
+
+.btn-reports-popup span:nth-child(2n) {
+    transform: translateY(15px);
+}
+
+.btn-reports-popup:hover span {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.btn-reports-popup:hover span:nth-child(2) {
+    transition-delay: 0.1s;
+}
+
+.btn-reports-popup:hover span:nth-child(3) {
+    transition-delay: 0.2s;
+}
+
+.btn-reports-popup:hover span:nth-child(4) {
+    transition-delay: 0.3s;
+}
+
+.btn-reports-popup:hover span:nth-child(5) {
+    transition-delay: 0.4s;
+}
+
+.btn-reports-popup:hover span:nth-child(6) {
+    transition-delay: 0.5s;
+}
+
 
 .btn-open-popup {
     position: fixed;
@@ -208,4 +280,129 @@ body {
 .tool_logo {
     height: 100%;
     width: 300px;
+}
+
+/* form */
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 350px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 20px;
+    position: relative;
+}
+
+.title {
+    font-size: 28px;
+    color: royalblue;
+    font-weight: 600;
+    letter-spacing: -1px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-left: 30px;
+}
+
+.title::before,
+.title::after {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    left: 0px;
+    background-color: royalblue;
+}
+
+.title::before {
+    width: 18px;
+    height: 18px;
+    background-color: royalblue;
+}
+
+.title::after {
+    width: 18px;
+    height: 18px;
+    animation: pulse 1s linear infinite;
+}
+
+.message,
+.signin {
+    color: rgba(88, 87, 87, 0.822);
+    font-size: 14px;
+}
+
+
+.flex {
+    display: flex;
+    width: 100%;
+    gap: 6px;
+}
+
+.form label {
+    position: relative;
+}
+
+.form label .input {
+    width: 100%;
+    padding: 10px 10px 20px 10px;
+    outline: 0;
+    border: 1px solid rgba(105, 105, 105, 0.397);
+    border-radius: 10px;
+}
+
+.form label .input+span {
+    position: absolute;
+    left: 10px;
+    top: 15px;
+    color: grey;
+    font-size: 0.9em;
+    cursor: text;
+    transition: 0.3s ease;
+}
+
+.form label .input:placeholder-shown+span {
+    top: 15px;
+    font-size: 0.9em;
+}
+
+.form label .input:focus+span,
+.form label .input:valid+span {
+    top: 30px;
+    font-size: 0.7em;
+    font-weight: 600;
+}
+
+.form label .input:valid+span {
+    color: green;
+}
+
+.submit {
+    border: none;
+    outline: none;
+    background-color: royalblue;
+    padding: 10px;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 16px;
+    transform: .3s ease;
+}
+
+.submit:hover {
+    background-color: rgb(56, 90, 194);
+}
+
+@keyframes pulse {
+    from {
+        transform: scale(0.9);
+        opacity: 1;
+    }
+
+    to {
+        transform: scale(1.8);
+        opacity: 0;
+    }
 }
