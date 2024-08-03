@@ -7,6 +7,7 @@ const { ensureAuth } = require("../middleware/auth");
 
 //Main Routes 
 router.get("/", homeController.getIndex);
+router.get("/ready", homeController.getReady);
 router.get("/profile", ensureAuth, postsController.getProfile);
 
 //Routes for user login/signup
@@ -15,5 +16,6 @@ router.post("/login", authController.postLogin);
 router.get("/logout", authController.logout);
 router.get("/signup", authController.getSignup);
 router.post("/signup", authController.postSignup);
+
 
 module.exports = router;
