@@ -6,4 +6,8 @@ module.exports = {
   getReady: (req, res) => {
     res.render("ready.ejs");
   },
+
+  getTest: (req, res) => {
+    res.render("test.ejs");
+  },
 };

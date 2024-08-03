@@ -1,0 +1,78 @@
+.question {
+    display: none;
+}
+
+.question.visible {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin-top: 40px;
+    padding: 0;
+    background-color: #f8f9fa;
+    /* Light background color */
+    display: flex;
+    align-items: center;
+    /* Vertically center items */
+    justify-content: center;
+    /* Center items vertically */
+    /* Center items horizontally */
+    min-height: 100vh;
+    text-align: center;
+    /* Center text in the entire body */
+}
+
+/* Style the header */
+header {
+    display: flex;
+    align-items: center;
+    /* Vertically center items */
+    justify-content: center;
+    /* Space between logo and text */
+    width: 100%;
+    /* Ensure header spans the full width of the viewport */
+    /* padding: 20px; */
+    /* Add padding for spacing */
+    position: absolute;
+    top: 0;
+    /* Position header at the top */
+    left: 0;
+    right: 0;
+}
+
+.question input[type="text"] {
+    text-align: center;
+    font-size: 65%;
+}
+
+.logo {
+    height: 90px;
+    width: 220px;
+    /* Adjust size as needed */
+    /* margin-left: 20px; */
+    /* Optional: spacing from the edge */
+}
+
+#lomino_dance {
+    height: 400px;
+}
+
+#answer1 {
+    height: 40px;
+    width: 50%;
+    margin: 0 auto;
+}
+
+.btn-primary {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #ffffff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}

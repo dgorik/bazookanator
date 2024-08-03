@@ -1,16 +1,15 @@
 /* Apply general styles to the body */
 body {
     font-family: Arial, sans-serif;
-    margin: 0;
+    margin-top: 80px;
     padding: 0;
     background-color: #f8f9fa;
     /* Light background color */
     display: flex;
-    flex-direction: column;
-    /* Stack items vertically */
+    align-items: center;
+    /* Vertically center items */
     justify-content: center;
     /* Center items vertically */
-    align-items: center;
     /* Center items horizontally */
     min-height: 100vh;
     text-align: center;
@@ -22,11 +21,11 @@ header {
     display: flex;
     align-items: center;
     /* Vertically center items */
-    justify-content: space-between;
+    justify-content: center;
     /* Space between logo and text */
     width: 100%;
     /* Ensure header spans the full width of the viewport */
-    padding: 20px;
+    /* padding: 20px; */
     /* Add padding for spacing */
     position: absolute;
     top: 0;
@@ -40,7 +39,7 @@ header {
     height: 90px;
     width: 220px;
     /* Adjust size as needed */
-    margin-left: 20px;
+    /* margin-left: 20px; */
     /* Optional: spacing from the edge */
 }
 
@@ -48,10 +47,14 @@ header {
 main.container {
     background-color: #ffffff;
     /* White background for the main content */
-    padding: 50px;
+    padding: 30px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     /* Subtle shadow for better visual appearance */
+}
+
+#question1 {
+    padding-top: 400px;
 }
 
 /* Style for the button */
