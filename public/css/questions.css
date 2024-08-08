@@ -1,5 +1,6 @@
 .question {
     display: none;
+    max-width: 300px
 }
 
 .question.visible {
@@ -10,7 +11,7 @@
 
 body {
     font-family: Arial, sans-serif;
-    margin-top: 40px;
+    margin-top: 30px;
     padding: 0;
     background-color: #f8f9fa;
     /* Light background color */
@@ -75,4 +76,19 @@ header {
     border-radius: 4px;
     text-decoration: none;
     transition: background-color 0.3s ease;
+}
+
+#question2 {
+    gap: 10px;
+}
+
+#question2_choices {
+    text-align: center;
+    /* Center the text horizontally */
+}
+
+/* Ensure the dropdown is styled properly */
+#question2_choices option {
+    text-align: center;
+    /* Center text for options */
 }

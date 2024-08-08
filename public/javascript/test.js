@@ -13,8 +13,23 @@ function checkAnswer1() {
 }
 
 function checkAnswer2() {
-    var answer = document.getElementById('answer2').value;
-    if (answer == '6') { // Correct answer for the second question
+    var answer = document.getElementById('question2_choices').value;
+    console.log(answer)
+    let correct_answer = 'answer3'
+    if (answer == correct_answer) { // Correct answer for the second question
+        alert('Correct! Questionnaire completed.');
+        document.getElementById('question2').classList.remove('visible');
+        document.getElementById('question3').classList.add('visible');
+    } else {
+        alert('Wrong answer. Try again.');
+    }
+}
+
+function checkAnswer3() {
+    var answer = document.getElementById('question2_choices').value;
+    console.log(answer)
+    let correct_answer = 'answer3'
+    if (answer == correct_answer) { // Correct answer for the second question
         alert('Correct! Questionnaire completed.');
     } else {
         alert('Wrong answer. Try again.');

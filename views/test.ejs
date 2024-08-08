@@ -17,7 +17,7 @@
 <body>
     <div class="question" id="question1">
         <h2> Question 1:</h2>
-        <p id="question">What is a location (city) of this disco?</p>
+        <p id="question1">What is a location (city) of this disco?</p>
         <img id="lomino_dance" src="imgs/lomino_dance.gif" alt="Company Logo">
         <input type="text" id="answer1" placeholder="Enter your answer here">
         <button class="btn-primary" onclick="checkAnswer1()"> Push Pop It</button>
@@ -25,10 +25,25 @@
 
     <div class="question" id="question2">
         <h2> Question 2:</h2>
-        <p id="question">What is a location (city) of this discotheque?</p>
-        <img id="lomino_dance" src="imgs/lomino_dance.gif" alt="Company Logo">
-        <input type="text" id="answer1" placeholder="Enter your answer here">
-        <button class="btn-primary" onclick="checkAnswer2()"> Push Pop It</button>
+        <p id="question2">Who is a finance "mole" here, keeping an eagle eye on the bill to make sure it doesn't blow
+            up?</p>
+        <img src="imgs/second_question_image.png" alt="Company Logo">
+        <select id="question2_choices" name="choices">
+            <option value="" disabled selected>Make a selection</option>
+            <option value="answer1">The bill blew up and an infiltrator is taking a picture to open a case</option>
+            <option value="answer2">An overly cheerful lady with her back partly turned towards us</option>
+            <option value="answer3">The gentleman on the right in knitted by a grape on vacation sweater</option>
+            <option value="answer4">All clear—no watchdogs around</option>
+        </select>
+        <button class="btn-primary" onclick="checkAnswer2()"> Baby Bottle Pop It</button>
+    </div>
+
+    <div class="question" id="question3">
+        <h2> Question 3:</h2>
+        <p id="question3">Who is a finance "mole" here, keeping an eagle eye on the bill to make sure it doesn't blow
+            up?</p>
+        <img src="imgs/second_question_image.png" alt="Company Logo">
+        <button class="btn-primary" onclick="checkAnswer3()"> Baby Bottle Pop It</button>
     </div>
 
     <script src="javascript/test.js" type="text/javascript" defer></script>
