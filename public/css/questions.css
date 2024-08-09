@@ -6,14 +6,14 @@
 .question.visible {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 10px;
 }
 
 body {
     font-family: Arial, sans-serif;
-    margin-top: 30px;
+    margin-top: 100px;
     padding: 0;
-    background-color: #f8f9fa;
+    background-color: hsl(0, 0%, 100%);
     /* Light background color */
     display: flex;
     align-items: center;
@@ -21,7 +21,7 @@ body {
     justify-content: center;
     /* Center items vertically */
     /* Center items horizontally */
-    min-height: 100vh;
+    /* min-height: 100vh; */
     text-align: center;
     /* Center text in the entire body */
 }
@@ -91,4 +91,16 @@ header {
 #question2_choices option {
     text-align: center;
     /* Center text for options */
+}
+
+#question3 {
+    gap: 10px;
+}
+
+#scary_kevin {
+    transform: translate(-25%, -2%);
+}
+
+#alan_taco {
+    display: none
 }

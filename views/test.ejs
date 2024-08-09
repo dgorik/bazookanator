@@ -17,7 +17,7 @@
 <body>
     <div class="question" id="question1">
         <h2> Question 1:</h2>
-        <p id="question1">What is a location (city) of this disco?</p>
+        <p>What is a location (city) of this disco?</p>
         <img id="lomino_dance" src="imgs/lomino_dance.gif" alt="Company Logo">
         <input type="text" id="answer1" placeholder="Enter your answer here">
         <button class="btn-primary" onclick="checkAnswer1()"> Push Pop It</button>
@@ -25,9 +25,9 @@
 
     <div class="question" id="question2">
         <h2> Question 2:</h2>
-        <p id="question2">Who is a finance "mole" here, keeping an eagle eye on the bill to make sure it doesn't blow
+        <p>Who is a finance "mole" here, keeping an eagle eye on the bill to make sure it doesn't blow
             up?</p>
-        <img src="imgs/second_question_image.png" alt="Company Logo">
+        <img id="finance_mole" src="imgs/second_question_image.png">
         <select id="question2_choices" name="choices">
             <option value="" disabled selected>Make a selection</option>
             <option value="answer1">The bill blew up and an infiltrator is taking a picture to open a case</option>
@@ -40,10 +40,20 @@
 
     <div class="question" id="question3">
         <h2> Question 3:</h2>
-        <p id="question3">Who is a finance "mole" here, keeping an eagle eye on the bill to make sure it doesn't blow
-            up?</p>
-        <img src="imgs/second_question_image.png" alt="Company Logo">
-        <button class="btn-primary" onclick="checkAnswer3()"> Baby Bottle Pop It</button>
+        <p>Which customer, acting as its own district, is managed by this 'chef'?</p>
+        <div class="scary_kevin">
+            <img id="scary_kevin" src="imgs/kevin_cooking_with_a_scary_face.jpg">
+        </div>
+        <input type="text" id="answer3" placeholder="Chop up your answer here">
+        <button class="btn-primary" onclick="checkAnswer3()"> Juicy Drop It</button>
+    </div>
+
+    <div class="question" id="question4">
+        <h2> Question 4:</h2>
+        <p>The real question should be "why", but let's answer "who" (first name) is on the left?</p>
+        <img id="alan_taco" src="imgs/alan_taco.jpg">
+        <input type="text" id="answer4" placeholder="Enter your answer here">
+        <button class="btn-primary" onclick="checkAnswer4()"> Ring Pop It</button>
     </div>
 
     <script src="javascript/test.js" type="text/javascript" defer></script>
