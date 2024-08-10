@@ -68,6 +68,7 @@ header {
 }
 
 .btn-primary {
+    display: inline-block;
     padding: 10px 20px;
     font-size: 16px;
     color: #ffffff;
@@ -76,6 +77,11 @@ header {
     border-radius: 4px;
     text-decoration: none;
     transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    /* Darker shade for hover effect */
 }
 
 #question2 {
@@ -102,5 +108,9 @@ header {
 }
 
 #alan_taco {
+    display: none
+}
+
+#harry_lick {
     display: none
 }

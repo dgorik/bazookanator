@@ -1,5 +1,6 @@
 
 
+
 function checkAnswer1() {
     var answer = document.getElementById('answer1').value.toLowerCase();
     let correct_answer = 'london'
@@ -17,7 +18,7 @@ function checkAnswer2() {
     var answer = document.getElementById('question2_choices').value;
     let correct_answer = 'answer3'
     if (answer == correct_answer) { // Correct answer for the second question
-        alert('Correct! Questionnaire completed.');
+        alert("Top marks, old bean! Just three more and you're done!")
         document.getElementById('question2').classList.remove('visible');
         document.getElementById('question3').classList.add('visible');
     } else {
@@ -29,12 +30,12 @@ function checkAnswer3() {
     var answer = document.getElementById('answer3').value.toLowerCase();
     let correct_answer = 'kroger'
     if (answer == correct_answer) { // Correct answer for the second question
-        alert('Correct! Questionnaire completed.');
+        alert("Splendid! Only two to go, keep your pecker up!");
         document.getElementById('question3').classList.remove('visible');
         document.getElementById('question4').classList.add('visible');
         setTimeout(function () {
             document.getElementById('alan_taco').style.display = 'block';
-        }, 5000);
+        }, 4000);
 
 
     } else {
@@ -46,7 +47,25 @@ function checkAnswer4() {
     var answer = document.getElementById('answer4').value.toLowerCase();
     let correct_answer = 'alan'
     if (answer == correct_answer) { // Correct answer for the second question
-        alert('Correct! Questionnaire completed.');
+        alert("Blimey! Just one to go and it's tea time!");
+        document.getElementById('question4').classList.remove('visible');
+        document.getElementById('question5').classList.add('visible');
+        setTimeout(function () {
+            document.getElementById('harry_lick').style.display = 'block';
+        }, 4000);
+    } else {
+        alert('Wrong answer. Try again.');
+    }
+}
+
+function checkAnswer5() {
+    var answer = document.getElementById('answer5').value.toLowerCase();
+    let correct_answer = 'harry'
+    if (answer == correct_answer) { // Correct answer for the second question
+        alert("Jolly good! All questions done and dusted! Get ready to be redirected")
+        setTimeout(function () {
+            window.location.href = '/signup';
+        }, 3000);
     } else {
         alert('Wrong answer. Try again.');
     }
