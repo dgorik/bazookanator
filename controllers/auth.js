@@ -90,29 +90,27 @@ exports.postSignup = (req, res, next) => {
     password: req.body.password,
   });
 
-  User.findOne(
-    { $or: [{ email: req.body.email }, { userName: req.body.userName }] },
-    (err, existingUser) => {
-      if (err) {
-        return next(err);
-      }
+  User.findOne({
+    $or: [{ email: req.body.email }, { userName: req.body.userName }],
+  })
+    .then((existingUser) => {
       if (existingUser) {
         req.flash("errors", {
           msg: "Account with that email address or username already exists.",
         });
         return res.redirect("../signup");
       }
-      user.save((err) => {
+      return user.save();
+    })
+    .then(() => {
+      req.logIn(user, (err) => {
         if (err) {
           return next(err);
         }
-        req.logIn(user, (err) => {
-          if (err) {
-            return next(err);
-          }
-          res.redirect("/profile");
-        });
+        res.redirect("/profile");
       });
-    }
-  );
+    })
+    .catch((err) => {
+      return next(err);
+    });
 };

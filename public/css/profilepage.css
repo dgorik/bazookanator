@@ -1,0 +1,49 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    /* align-items: sp; */
+    width: 100%;
+}
+
+body header nav ul {
+    list-style: none;
+    display: flex;
+    gap: 50px
+}
+
+body header nav li {
+    display: inline-block;
+}
+
+
+.btn-primary {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #ffffff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    /* Darker shade for hover effect */
+}
+
+.logo {
+    height: 90px;
+    width: 220px;
+    /* Adjust size as needed */
+    /* margin-left: 20px; */
+    /* Optional: spacing from the edge */
+}
