@@ -1,15 +1,15 @@
-body {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-}
-
 .header {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
-    /* align-items: sp; */
-    width: 100%;
+    justify-content: space-between;
+    align-items: center
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
 }
 
 body header nav ul {
@@ -25,6 +25,7 @@ body header nav li {
 
 .btn-primary {
     display: inline-block;
+    height: 25%;
     padding: 10px 20px;
     font-size: 16px;
     color: #ffffff;
@@ -46,4 +47,9 @@ body header nav li {
     /* Adjust size as needed */
     /* margin-left: 20px; */
     /* Optional: spacing from the edge */
+}
+
+.tool_logo {
+    height: 100%;
+    width: 300px;
 }

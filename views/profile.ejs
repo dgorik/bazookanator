@@ -1,30 +1,26 @@
-<<!DOCTYPE html>
-  <html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Financial Reports</title>
-    <link rel="stylesheet" href="css/profilepage.css">
-  </head>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Financial Reports</title>
+  <link rel="stylesheet" href="css/profilepage.css">
+</head>
 
-  <body>
-    <header class="header">
-      <a href="front page.html">
-        <img class="logo" src="imgs/logo.png" alt="Company Logo">
-      </a>
+<body>
+  <header class="header">
+    <a href="profile.ejs">
+      <img class="logo" src="imgs/logo.png" alt="Company Logo">
+    </a>
 
-      <nav>
-        <ul>
-          <li><a href="first report.html">First Report</a></li>
-          <li><a href="second report.html">Second Report</a></li>
-          <li><a href="third report.html">Third Report</a></li>
-        </ul>
-      </nav>
+    <img class="tool_logo" src="imgs/tool_logo.png" alt="Company Logo">
 
-      <a href="/logout" class="col-3 btn btn-primary">Logout</a>
-    </header>
+    <a href="/logout" class="col-3 btn btn-primary">Logout</a>
+  </header>
 
+
+  <div class="container">
     <div>
       <p><strong>User Name</strong>: <%= user.userName %>
       </p>
@@ -36,10 +32,11 @@
       <h2>Please click on the report you want to generate above</h2>
       <img src="imgs/bazooka_team.jpg" alt="Fire it away">
     </div>
+  </div>
 
-    <script>
-      // You can add JavaScript code here to handle form submission and AJAX requests.
-    </script>
-  </body>
+  <script>
+    // You can add JavaScript code here to handle form submission and AJAX requests.
+  </script>
+</body>
 
-  </html>
+</html>
