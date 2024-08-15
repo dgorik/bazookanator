@@ -1,0 +1,10 @@
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.tool_logo {
+    height: 100%;
+    width: 300px;
+}
