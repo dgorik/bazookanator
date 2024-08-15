@@ -10,6 +10,13 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    margin-top: 50px;
+}
+
+.child_header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 body header nav ul {
