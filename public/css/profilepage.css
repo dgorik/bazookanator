@@ -13,7 +13,7 @@ body {
 .left_column.show {
     display: grid;
     background-color: #f0f0f058;
-    grid-column: 1;
+    /* grid-column: 1; */
     grid-template-columns: auto;
     margin-top: 60px;
 }
@@ -58,6 +58,32 @@ body {
     background-color: #aea2a2;
 }
 
+#container_headline {
+    font-style: italic;
+    margin-bottom: 10px;
+}
+
+.container1 .description {
+    display: inline-block;
+    max-width: 550px;
+    text-align: center;
+    margin: 20px;
+}
+
+.container2 .description {
+    display: inline-block;
+    max-width: 550px;
+    text-align: center;
+    margin: 20px;
+}
+
+.container3 .description {
+    display: inline-block;
+    max-width: 550px;
+    text-align: center;
+    margin: 20px;
+}
+
 .smiling_kid {
     margin: auto;
     width: 50%;
@@ -79,8 +105,9 @@ body {
 }
 
 .btn-reports-popup {
-    padding: 10px 20px;
-    font-size: 16px;
+    padding: 12px 5px;
+    width: 5%;
+    font-size: 12px;
     color: #ffffff;
     background-color: #007bff;
     border: none;
@@ -89,6 +116,7 @@ body {
     transition: background-color 0.3s ease;
     position: fixed;
     margin-top: 10px;
+    text-align: center;
 }
 
 .button {
