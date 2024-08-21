@@ -37,9 +37,38 @@
       <img src="imgs/bazooka_team.jpg" alt="Fire it away">
     </div>
   </div>
+  <button class="btn-open-popup" onclick="togglePopup()"> Fire Away a Question
+  </button>
+
+  <div id="popupOverlay" class="overlay-container">
+    <div class="popup-box">
+      <h2 style="color: green;">Popup Form</h2>
+      <form class="form-container">
+        <label class="form-label" for="name">
+          Username:
+        </label>
+        <input class="form-input" type="text" placeholder="Enter Your Name" id="name" name="name" required>
+
+        <label class="form-label" for="email">Email:</label>
+        <input class="form-input" type="email" placeholder="Enter your question" id="email" name="email" required>
+
+        <button class="btn-submit" type="submit">
+          Submit
+        </button>
+      </form>
+
+      <button class="btn-close-popup" onclick="togglePopup()">
+        Close
+      </button>
+    </div>
+  </div>
+
 
   <script>
-    // You can add JavaScript code here to handle form submission and AJAX requests.
+    function togglePopup() {
+      const overlay = document.getElementById('popupOverlay');
+      overlay.classList.toggle('show');
+    }
   </script>
 </body>
 
