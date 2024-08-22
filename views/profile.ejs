@@ -19,31 +19,42 @@
 
     <div class="child_header">
       <a href="/" class="col-3 btn btn-primary">Logout</a>
-      <p><strong>User Name</strong>: <%= user.userName %>
+      <!-- <p><strong>User Name</strong>: <%= user.userName %>
       </p>
       <p><strong>Email</strong>: <%= user.email %>
-      </p>
+      </p> -->
     </div>
 
   </header>
 
 
-  <div class="container">
-    <div class="child">
+  <div class="container1">
 
-    </div>
+    <!-- <div class="child"> -->
+    <img src="imgs/bazooka_team.jpg" alt="Fire it away">
+    <button class="btn-open-popup" onclick="togglePopup()"> Questions, mate?
+    </button>
+    <!-- </div> -->
 
-    <div class="child">
-      <img src="imgs/bazooka_team.jpg" alt="Fire it away">
-    </div>
   </div>
-  <button class="btn-open-popup" onclick="togglePopup()"> Fire Away a Question
-  </button>
+
+  <div class="container2">
+    <div class="container3">
+      <img class="smiling_kid" src="imgs/smiling_kid.jpeg" alt="Fire it away">
+      </button>
+    </div>
+
+  </div>
+
+  <div class="container3">
+    <img class="smiling_kid" src="imgs/two_kids_with_gum_bubles.jpeg" alt="Fire it away">
+
+  </div>
 
   <div id="popupOverlay" class="overlay-container">
     <div class="popup-box">
-      <h2 style="color: green;">Popup Form</h2>
       <form class="form-container">
+        <h2 style="color: rgb(227, 5, 5);">Bazookanator Q&A</h2>
         <label class="form-label" for="name">
           Username:
         </label>
@@ -51,11 +62,10 @@
 
         <label class="form-label" for="email">Email:</label>
         <input class="form-input" type="email" placeholder="Enter your question" id="email" name="email" required>
-
-        <button class="btn-submit" type="submit">
-          Submit
-        </button>
       </form>
+      <button class="btn-close-submit" type="submit">
+        Submit
+      </button>
 
       <button class="btn-close-popup" onclick="togglePopup()">
         Close
