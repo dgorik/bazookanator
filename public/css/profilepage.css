@@ -1,6 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
+
 body {
     display: grid;
-    grid-template-columns: 5%, 95%
+    grid-template-columns: auto 1fr;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .left_column {
@@ -11,6 +14,7 @@ body {
     display: grid;
     background-color: #f0f0f058;
     grid-column: 1;
+    grid-template-columns: auto;
     margin-top: 60px;
 }
 
@@ -33,7 +37,8 @@ body {
 
 .container1,
 .container2,
-.container3 {
+.container3,
+.container4 {
     display: flex;
     width: 95%;
     margin-left: auto;
@@ -43,11 +48,22 @@ body {
     margin-top: 50px;
 }
 
+.container4 details {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.container4 details div {
+    margin-top: 2 0px;
+    background-color: #aea2a2;
+}
+
 .smiling_kid {
     margin: auto;
     width: 50%;
     box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.3);
 }
+
 
 
 .btn-primary {
@@ -75,15 +91,11 @@ body {
     margin-top: 10px;
 }
 
-.overlay-container {
-    display: none;
-}
-
-.overlay-container.show {
-    display: block;
-    position: fixed;
-    bottom: 25%;
-    right: 2%;
+.button {
+    flex: 1;
+    /* Makes all buttons take equal space */
+    padding: 10px;
+    text-align: center;
 }
 
 .btn-open-popup {
@@ -112,6 +124,17 @@ body {
     border-radius: 4px;
     text-decoration: none;
     transition: background-color 0.3s ease;
+}
+
+.overlay-container {
+    display: none;
+}
+
+.overlay-container.show {
+    display: block;
+    position: fixed;
+    bottom: 25%;
+    right: 2%;
 }
 
 .popup-box {
