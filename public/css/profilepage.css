@@ -1,18 +1,42 @@
-.header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center
+body {
+    display: grid;
+    grid-template-columns: 5%, 95%
 }
 
-.body {
-    display: flex
+.left_column {
+    display: none;
+}
+
+.left_column.show {
+    display: grid;
+    background-color: #f0f0f058;
+    grid-column: 1;
+    margin-top: 60px;
+}
+
+.right_column {
+    grid-column: 2;
+    margin-top: 10px;
+}
+
+.left_column_menu {
+    position: sticky;
+    top: 20
+}
+
+.header {
+    display: flex;
+    justify-content: space-around;
+    /* Define columns for the layout */
+    /* Align items vertically center */
 }
 
 .container1,
 .container2,
 .container3 {
     display: flex;
+    width: 95%;
+    margin-left: auto;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
@@ -20,7 +44,6 @@
 }
 
 .smiling_kid {
-    display: block;
     margin: auto;
     width: 50%;
     box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.3);
@@ -28,7 +51,6 @@
 
 
 .btn-primary {
-    display: inline-block;
     height: 25%;
     padding: 10px 20px;
     font-size: 16px;
@@ -38,6 +60,19 @@
     border-radius: 4px;
     text-decoration: none;
     transition: background-color 0.3s ease;
+}
+
+.btn-reports-popup {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #ffffff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    position: fixed;
+    margin-top: 10px;
 }
 
 .overlay-container {
