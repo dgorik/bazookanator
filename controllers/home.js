@@ -10,4 +10,8 @@ module.exports = {
   getTest: (req, res) => {
     res.render("test.ejs");
   },
+
+  getFirstReport: (req, res) => {
+    res.render("first_report.ejs");
+  },
 };
