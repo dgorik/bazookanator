@@ -16,13 +16,15 @@ body {
     /* grid-column: 1; */
     grid-template-columns: 1fr;
     margin-top: 60px;
+    width: 5%;
 }
 
 #left_reports_section {
     display: flex;
     flex-direction: column;
-    margin-bottom: 70px
-        /* Ensure the span elements stack vertically */
+    margin-bottom: 70px;
+    position: fixed;
+    /* Ensure the span elements stack vertically */
 }
 
 #left_reports_section span {
@@ -133,7 +135,6 @@ body {
 .btn-reports-popup {
     padding: 12px 5px;
     width: 5%;
-    font-size: 12px;
     color: #ffffff;
     background-color: #007bff;
     border: none;
@@ -173,7 +174,7 @@ body {
     display: grid;
     inset: 0;
     place-content: center;
-    position: absolute;
+    position: fixed;
     transition: transform 0.2s cubic-bezier(0.87, 0, 0.13, 1);
 }
 
@@ -183,13 +184,26 @@ body {
 
 .btn-reports-popup .letters {
     display: inline-flex;
-    text-align: center;
+    margin: auto;
 }
 
-.btn-reports-popup span {
-    opacity: 0;
-    transform: translateY(-15px);
-    transition: transform 0.2s cubic-bezier(0.87, 0, 0.13, 1), opacity 0.2s;
+@media (min-width: 1350px) {
+    .btn-reports-popup span {
+        opacity: 0;
+        font-size: 0.9em;
+        transform: translateY(-15px);
+        transition: transform 0.2s cubic-bezier(0.87, 0, 0.13, 1), opacity 0.2s;
+    }
+}
+
+@media (max-width: 1349px) {
+    .btn-reports-popup span {
+        opacity: 0;
+        font-size: 0.7em;
+        transform: translateY(-15px);
+        transition: transform 0.2s cubic-bezier(0.87, 0, 0.13, 1), opacity 0.2s;
+    }
+
 }
 
 .btn-reports-popup span:nth-child(2n) {
