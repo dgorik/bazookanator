@@ -14,4 +14,8 @@ module.exports = {
   getFirstReport: (req, res) => {
     res.render("first_report.ejs");
   },
+
+  getSecondReport: (req, res) => {
+    res.render("first_report.ejs");
+  },
 };

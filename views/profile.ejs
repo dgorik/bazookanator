@@ -28,8 +28,8 @@
 
   <div id="leftColumn" class="left_column">
     <div id="left_reports_section">
-      <span id="first_report"> <a href="/first_report"> Apple </a> </span>
-      <span id="second_report"> Apple </span>
+      <span id="first_report"> <a href="/first_report"> Demo Report </a> </span>
+      <span id="second_report"> <a href="/second_report"> Board OP9 Embedded </a> </span>
       <span id="third_report"> Apple </span>
       <span id="forth_report"> Apple </span>
     </div>
@@ -93,26 +93,31 @@
 
     <div id="popupOverlay" class="overlay-container">
       <div class="popup-box">
-        <form class="form">
+        <form class="form" method="POST" action="/sendEmail">
           <p class="title">Questions, mate </p>
           <p class="message"> </p>
           <div class="flex">
             <label>
-              <input required="" placeholder="" type="text" class="input">
+              <input required="" placeholder="" type="text" class="input" id="first_name">
               <span>Firstname</span>
             </label>
 
             <label>
-              <input required="" placeholder="" type="text" class="input">
+              <input required="" placeholder="" type="text" class="input" id="last_name">
               <span>Lastname</span>
             </label>
           </div>
 
           <label>
-            <input required="" placeholder="" type="email" class="input">
+            <input required="" placeholder="" type="text" class="input" id="email">
+            <span>Email</span>
+          </label>
+
+          <label>
+            <input required="" placeholder="" type="email" class="input" id="message">
             <span>Question</span>
           </label>
-          <button class="submit">Submit</button>
+          <button type="submit" class="submit">Submit</button>
         </form>
       </div>
     </div>

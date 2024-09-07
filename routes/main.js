@@ -10,7 +10,12 @@ router.get("/", homeController.getIndex);
 router.get("/ready", homeController.getReady);
 router.get("/test", homeController.getTest);
 router.get("/first_report", homeController.getFirstReport);
+router.get("/second_report", homeController.getSecondReport);
 router.get("/profile", ensureAuth, postsController.getProfile);
+
+//Route for handling message submissions
+
+router.post("/sendEmail", postsController.sendEmail);
 
 //Routes for user login/signup
 router.get("/login", authController.getLogin);
