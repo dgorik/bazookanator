@@ -1,5 +1,6 @@
 const cloudinary = require("../middleware/cloudinary");
 const Post = require("../models/Post");
+const transporterEmail = require('../config/sendemail');
 
 
 module.exports = {
@@ -17,19 +18,33 @@ module.exports = {
     }
   },
   sendEmail: async (req, res) => {
-    try {
-      const full_name = req.body.first_name + " " + req.body.last_name;
-      const email = req.body.email;
-      const message = req.body.message;
-      console.log(full_name, email, message);
-      res.render("profile.ejs", { user: req.user });
-    } catch (err) {
-      console.log(err);
+    const { first_name, last_name, email, message } = req.body;
+
+    if (!first_name || !last_name || !email || !message) {
+      return res.status(400).json({ error: 'All fields are required' });
     }
-  },
+
+    try {
+      const mailOptions = {
+        from: email,
+        to: process.env.EMAIL_USERNAME, // e.g., your email address to receive the contact form
+        subject: 'New Contact Form Submission',
+        text: `Name: ${first_name + " " + last_name}\nEmail: ${email}\nMessage: ${message}`
+      };
+
+      console.log(mailOptions)
+      console.log('hahahah')
+
+      // Send the email
+      await transporterEmail.sendMail(mailOptions);
+
+      res.status(200).json({ message: 'Your message has been sent successfully' });
+    } catch (err) {
+      res.status(500).json({ error: 'There was an error sending your message' });
+    }
+  }
+
 }
-
-
 
 // module.exports = {
 //   
