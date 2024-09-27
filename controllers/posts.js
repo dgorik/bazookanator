@@ -45,6 +45,18 @@ module.exports = {
     if (requestType === "question1") {
       return inputData == "london" ? res.json(true) : res.json(false)
     }
+    if (requestType === "question2") {
+      return inputData == "answer3" ? res.json(true) : res.json(false)
+    }
+    if (requestType === "question3") {
+      return inputData == "kroger" ? res.json(true) : res.json(false)
+    }
+    if (requestType === "question4") {
+      return inputData == "alan" ? res.json(true) : res.json(false)
+    }
+    if (requestType === "question5") {
+      return inputData == "harry" ? res.json(true) : res.json(false)
+    }
   }
 }
 
