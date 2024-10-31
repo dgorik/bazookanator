@@ -7,7 +7,8 @@ function checkAnswer1() {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({ inputData: answer, requestType: requestType }),
-    }).then(response => response.json())
+    })
+        .then(response => response.json())
         .then(data => {
             if (data) {
                 alert("Well, bloody done! You've sorted the first one - 4 more to go!")
@@ -18,6 +19,7 @@ function checkAnswer1() {
                 alert("Don’t have me believing you’re a Hersheys operative! Fancy a bit of fish and chips, perhaps?");
             }
         })
+        .catch(error => console.error("There was an error", error))
 }
 
 function checkAnswer2() {
@@ -29,7 +31,8 @@ function checkAnswer2() {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({ inputData: answer, requestType: requestType }),
-    }).then(response => response.json())
+    })
+        .then(response => response.json())
         .then(data => {
             if (data) {
                 alert("Top marks, old bean! Just three more and you're done!")
@@ -40,6 +43,7 @@ function checkAnswer2() {
                 alert('Wrong answer. Try again.');
             }
         })
+        .catch(error => console.error("There was an error", error))
 
 }
 
@@ -52,7 +56,8 @@ function checkAnswer3() {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({ inputData: answer, requestType: requestType }),
-    }).then(response => response.json())
+    })
+        .then(response => response.json())
         .then(data => {
             if (data) {
                 alert("Splendid! Only two to go, keep your pecker up!");
@@ -66,6 +71,7 @@ function checkAnswer3() {
                 alert('Wrong answer. Try again.');
             }
         })
+        .catch(error => console.error("There was an error", error))
 }
 
 function checkAnswer4() {
@@ -77,7 +83,8 @@ function checkAnswer4() {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({ inputData: answer, requestType: requestType }),
-    }).then(response => response.json())
+    })
+        .then(response => response.json())
         .then(data => {
             if (data) {
                 alert("Blimey! Just one to go and it's tea time!");
@@ -91,6 +98,7 @@ function checkAnswer4() {
                 alert('Wrong answer. Try again.');
             }
         })
+        .catch(error => console.error("There was an error", error))
 }
 
 function checkAnswer5() {
@@ -102,7 +110,8 @@ function checkAnswer5() {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({ inputData: answer, requestType: requestType }),
-    }).then(response => response.json())
+    })
+        .then(response => response.json())
         .then(data => {
             if (data) {
                 alert("Jolly good! All questions done and dusted! Get ready to be redirected")
@@ -114,6 +123,7 @@ function checkAnswer5() {
                 alert('Wrong answer. Try again.');
             }
         })
+        .catch(error => console.error("There was an error", error))
 }
 
 document.addEventListener('DOMContentLoaded', () => {
