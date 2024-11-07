@@ -39,8 +39,13 @@ module.exports = {
     } catch (err) {
       res.status(500).json({ error: 'There was an error sending your message' });
     }
+  },
+  quizCheck: async (req, res) => {
+    const { inputData, requestType } = req.body;
+    if (requestType === "question1") {
+      return inputData == "london" ? res.json(true) : res.json(false)
+    }
   }
-
 }
 
 // module.exports = {

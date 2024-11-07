@@ -340,7 +340,7 @@ body {
     width: 16px;
     border-radius: 50%;
     left: 0px;
-    background-color: royalblue;
+    background-color: blue;
 }
 
 .title::before {

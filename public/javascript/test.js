@@ -1,22 +1,28 @@
-
-
-
 function checkAnswer1() {
     var answer = document.getElementById('answer1').value.toLowerCase();
-    let correct_answer = 'london'
-    if (answer == correct_answer) { // Correct answer for the first question
-        alert("Well, bloody done! You've sorted the first one - 4 more to go!")
-        document.getElementById('question1').classList.remove('visible');
-        document.getElementById('question2').classList.add('visible');
-
-    } else {
-        alert("Don’t have me believing you’re a Hersheys operative! Fancy a bit of fish and chips, perhaps?");
-    }
+    var requestType = "question1"
+    fetch('/quizCheck', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ inputData: answer, requestType: requestType }),
+    }).then(response => response.json())
+        .then(data => {
+            if (data) {
+                alert("Well, bloody done! You've sorted the first one - 4 more to go!")
+                document.getElementById('question1').classList.remove('visible');
+                document.getElementById('question2').classList.add('visible');
+            }
+            else {
+                alert("Don’t have me believing you’re a Hersheys operative! Fancy a bit of fish and chips, perhaps?");
+            }
+        })
 }
 
 function checkAnswer2() {
     var answer = document.getElementById('question2_choices').value;
-    let correct_answer = 'answer3'
+    let correct_answer = process.env.ANSWER2
     if (answer == correct_answer) { // Correct answer for the second question
         alert("Top marks, old bean! Just three more and you're done!")
         document.getElementById('question2').classList.remove('visible');
@@ -28,7 +34,7 @@ function checkAnswer2() {
 
 function checkAnswer3() {
     var answer = document.getElementById('answer3').value.toLowerCase();
-    let correct_answer = 'kroger'
+    let correct_answer = process.env.ANSWER3
     if (answer == correct_answer) { // Correct answer for the second question
         alert("Splendid! Only two to go, keep your pecker up!");
         document.getElementById('question3').classList.remove('visible');
@@ -45,7 +51,7 @@ function checkAnswer3() {
 
 function checkAnswer4() {
     var answer = document.getElementById('answer4').value.toLowerCase();
-    let correct_answer = 'alan'
+    let correct_answer = process.env.ANSWER4
     if (answer == correct_answer) { // Correct answer for the second question
         alert("Blimey! Just one to go and it's tea time!");
         document.getElementById('question4').classList.remove('visible');
@@ -60,7 +66,7 @@ function checkAnswer4() {
 
 function checkAnswer5() {
     var answer = document.getElementById('answer5').value.toLowerCase();
-    let correct_answer = 'harry'
+    let correct_answer = process.env.ANSWER5
     if (answer == correct_answer) { // Correct answer for the second question
         alert("Jolly good! All questions done and dusted! Get ready to be redirected")
         setTimeout(function () {

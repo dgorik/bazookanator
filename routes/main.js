@@ -17,6 +17,7 @@ router.get("/contact_form_success", homeController.getContactSuccess);
 //Route for handling message submissions
 
 router.post("/sendEmail", postsController.sendEmail);
+router.post("/quizCheck", postsController.quizCheck);
 
 //Routes for user login/signup
 router.get("/login", authController.getLogin);
