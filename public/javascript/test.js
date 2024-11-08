@@ -22,19 +22,30 @@ function checkAnswer1() {
 
 function checkAnswer2() {
     var answer = document.getElementById('question2_choices').value;
-    let correct_answer = process.env.ANSWER2
-    if (answer == correct_answer) { // Correct answer for the second question
-        alert("Top marks, old bean! Just three more and you're done!")
-        document.getElementById('question2').classList.remove('visible');
-        document.getElementById('question3').classList.add('visible');
-    } else {
-        alert('Wrong answer. Try again.');
-    }
+    var requestType = "question2"
+    fetch('/quizCheck', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ inputData: answer, requestType: requestType }),
+    }).then(response => response.json())
+        .then(data => {
+            if (data) {
+                alert("Top marks, old bean! Just three more and you're done!")
+                document.getElementById('question2').classList.remove('visible');
+                document.getElementById('question3').classList.add('visible');
+            }
+            else {
+                alert('Wrong answer. Try again.');
+            }
+        })
+
 }
 
 function checkAnswer3() {
     var answer = document.getElementById('answer3').value.toLowerCase();
-    let correct_answer = process.env.ANSWER3
+    var requestType = "question3"
     if (answer == correct_answer) { // Correct answer for the second question
         alert("Splendid! Only two to go, keep your pecker up!");
         document.getElementById('question3').classList.remove('visible');
@@ -51,7 +62,7 @@ function checkAnswer3() {
 
 function checkAnswer4() {
     var answer = document.getElementById('answer4').value.toLowerCase();
-    let correct_answer = process.env.ANSWER4
+    var requestType = "question4"
     if (answer == correct_answer) { // Correct answer for the second question
         alert("Blimey! Just one to go and it's tea time!");
         document.getElementById('question4').classList.remove('visible');
@@ -66,7 +77,7 @@ function checkAnswer4() {
 
 function checkAnswer5() {
     var answer = document.getElementById('answer5').value.toLowerCase();
-    let correct_answer = process.env.ANSWER5
+    var requestType = "question5"
     if (answer == correct_answer) { // Correct answer for the second question
         alert("Jolly good! All questions done and dusted! Get ready to be redirected")
         setTimeout(function () {
