@@ -69,6 +69,9 @@ exports.postSignup = (req, res, next) => {
   const validationErrors = [];
   if (!validator.isEmail(req.body.email))
     validationErrors.push({ msg: "Please enter a valid email address." });
+  if (!req.body.email.endsWith('@bazooka-inc.com')){
+    validationErrors.push({ msg: "Please enter bazooka-inc.com emails." });
+  }
   if (!validator.isLength(req.body.password, { min: 8 }))
     validationErrors.push({
       msg: "Password must be at least 8 characters long",
