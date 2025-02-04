@@ -1,6 +1,8 @@
 const passport = require("passport");
+const nodemailer = require("nodemailer");
 const validator = require("validator");
 const User = require("../models/User");
+const UserVerification = require("../models/UserVerification");
 
 exports.getLogin = (req, res) => {
   if (req.user) {
@@ -65,6 +67,10 @@ exports.getSignup = (req, res) => {
   });
 };
 
+exports.getSignupVerify = (req, res) => {
+  res.render("./signup/verify");
+},
+
 exports.postSignup = (req, res, next) => {
   const validationErrors = [];
   if (!validator.isEmail(req.body.email))
@@ -81,7 +87,7 @@ exports.postSignup = (req, res, next) => {
 
   if (validationErrors.length) {
     req.flash("errors", validationErrors);
-    return res.redirect("../signup");
+    return res.redirect("/signup");
   }
   req.body.email = validator.normalizeEmail(req.body.email, {
     gmail_remove_dots: false,
@@ -103,6 +109,7 @@ exports.postSignup = (req, res, next) => {
         });
         return res.redirect("../signup");
       }
+      res.redirect('/signup/verify')
       return user.save();
     })
     .then(() => {

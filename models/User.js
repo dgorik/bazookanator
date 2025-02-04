@@ -5,6 +5,8 @@ const UserSchema = new mongoose.Schema({
   userName: { type: String, unique: true },
   email: { type: String, unique: true },
   password: String,
+  isVerified: Boolean
+  //maybe we can add name to it and display the name in the top right corner when a user signs in
 });
 
 // Password hash middleware.
