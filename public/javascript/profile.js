@@ -14,3 +14,7 @@ function sendEmail() {
     let message = document.querySelector("#message")
     console.log(full_name, email, message)
 }
+
+
+
+
