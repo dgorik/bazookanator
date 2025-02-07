@@ -1,5 +1,7 @@
 const passport = require("passport");
 const nodemailer = require("nodemailer");
+const jwt = require("jsonwebtoken")
+const {sendEmail} = require('../controllers/verification')
 const validator = require("validator");
 const User = require("../models/User");
 const UserVerification = require("../models/UserVerification");
@@ -109,8 +111,15 @@ exports.postSignup = (req, res, next) => {
         });
         return res.redirect("../signup");
       }
-      res.redirect('/signup/verify')
-      return user.save();
+      return user
+      //res.redirect('/signup/verify')
+      //return user.save();
+    })
+    .then( (user) => {
+      const token = jwt.sign({userName: user.userName, email: user.email, password: user.password}, process.env.JWT_ACC_TOKEN, {expiresIn: '20m'})
+      const activation_link = process.env.JWT_ACCTTIVATION_LINK + token
+      return sendEmail(user.userName,user.email, activation_link)
+
     })
     .then(() => {
       req.logIn(user, (err) => {

@@ -2,10 +2,18 @@ const nodemailer = require("nodemailer");
 
 
 const transporterEmail = nodemailer.createTransport({
-    service: process.env.EMAIl_SERVICE,
+    service: process.env.EMAIL_SERVICE,
+    port: 465,
+    secure: true, 
+    logger: true,
+    debug: true, 
+    secureConnection: false,
     auth: {
         user: process.env.EMAIL_USERNAME, // Set this environment variable
         pass: process.env.EMAIL_PASSWORD  // Set this environment variable
+    },
+    tls: {
+        rejectUnAuthorized: true
     }
 });
 
