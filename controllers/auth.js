@@ -114,8 +114,6 @@ exports.postSignup = (req, res, next) => {
       const token = jwt.sign({userName: user.userName, email: user.email, password: user.password}, process.env.JWT_ACC_TOKEN, {expiresIn: '20m'})
       const activation_link = process.env.JWT_ACCTTIVATION_LINK + token
       sendEmail(user.userName,user.email, activation_link)
-      user.token = token
-      user.save()
       res.redirect('./signup/verify')
       // return user
     })
@@ -137,21 +135,24 @@ exports.postSignup = (req, res, next) => {
     });
 };
 
-exports.getTokenVerify = (req, res, next) => {
+exports.getTokenVerify = async (req, res, next) => {
   const { token } = req.query;
-  console.log(token)
-  User.findOneAndUpdate(
-    {token: token},
-    {isVerified: true},
-    {new: true}
-  )
-    .then(user => {
-      console.log(user)
-      req.flash("errors", { msg: "Your email has been verified " });
-      return res.redirect("../profile"); 
-      }
-    )
-    .catch((error) => {
-      console.log(error.message)
-    })
+  try{
+    const decoded = jwt.verify(token, process.env.JWT_ACC_TOKEN)
+    const {userName, email, password} = decoded
+    const newUser = new User({
+      userName,
+      email,
+      password,
+      isVerified: true, // Set the user as verified
+    });
+
+    await newUser.save();
+    req.flash("errors", { msg: "Your email has been verified " });
+    return res.redirect("../profile"); 
+  }
+  catch(error){
+    console.log(error.message)
+  }
 }
+     
