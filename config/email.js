@@ -11,13 +11,18 @@ const connectEmail = async () => {
             },
         });
     
-        transporterEmail.verify((error, success) => {
-            if (error) {
-                console.log('Error connecting to email service:', error);
-            } else {
-                console.log('Successfully connected to email service:', success);
-            }
+        await new Promise((resolve, reject) => {
+            transporterEmail.verify((error, success) => {
+                if (error) {
+                    console.log('Error connecting to email service:', error);
+                    reject(error); // Reject the promise if there's an error
+                } else {
+                    console.log('Successfully connected to email service:', success);
+                    resolve(success); // Resolve the promise if successful
+                }
+            });
         });
+        return transporterEmail;
     }
     catch (err) {
         console.error(err);
