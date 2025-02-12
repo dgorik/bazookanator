@@ -109,12 +109,12 @@ exports.postSignup = (req, res, next) => {
         req.flash("errors", {
           msg: "Account with that email address or username already exists.",
         });
-        return res.redirect("../signup");
+        return res.redirect("/signup");
       }
       const token = jwt.sign({userName: user.userName, email: user.email, password: user.password}, process.env.JWT_ACC_TOKEN, {expiresIn: '20m'})
       const activation_link = process.env.JWT_ACCTTIVATION_LINK + token
       sendEmail(user.userName,user.email, activation_link)
-      res.redirect('./signup/verify')
+      res.redirect('/signup/verify')
       // return user
     })
     // .then(async (user) => {
@@ -148,8 +148,8 @@ exports.getTokenVerify = async (req, res, next) => {
     });
 
     await newUser.save();
-    req.flash("errors", { msg: "Your email has been verified " });
-    return res.redirect("../profile"); 
+    req.flash("success", { msg: "Your email has been verified " });
+    return res.render("index", { messages: req.flash() }); 
   }
   catch(error){
     console.log(error.message)
