@@ -8,7 +8,7 @@ const methodOverride = require("method-override");
 const flash = require("express-flash");
 const logger = require("morgan");
 const connectDB = require("./config/database");
-const ConnectEmail = require("./config/sendemail");
+const connectEmail = require("./config/email");
 const mainRoutes = require("./routes/main");
 const postRoutes = require("./routes/posts");
 
@@ -21,7 +21,7 @@ require("./config/passport")(passport);
 //Connect To Database
 connectDB();
 
-ConnectEmail()
+connectEmail()
 //Using EJS for views
 app.set("view engine", "ejs");
 

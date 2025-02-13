@@ -1,5 +1,4 @@
-const transporterEmail = require('../config/sendemail');
-
+const ConnectEmail = require('../config/email');
 
     const sendEmail =  async (userName, email, activation_link) => {
         console.log(email)

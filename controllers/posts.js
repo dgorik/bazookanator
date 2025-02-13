@@ -1,6 +1,6 @@
 const cloudinary = require("../middleware/cloudinary");
 const Post = require("../models/Post");
-const transporterEmail = require('../config/sendemail');
+const transporterEmail = require('../config/email');
 
 
 module.exports = {
