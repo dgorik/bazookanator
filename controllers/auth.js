@@ -27,13 +27,16 @@ exports.postLogin = (req, res, next) => {
   req.body.email = validator.normalizeEmail(req.body.email, {
     gmail_remove_dots: false,
   });
-
   passport.authenticate("local", (err, user, info) => {
     if (err) {
       return next(err);
     }
     if (!user) {
       req.flash("errors", info);
+      return res.redirect("/login");
+    }
+    if (!user.isVerified) {
+      req.flash("errors", { msg: "Did you verify your email?" });
       return res.redirect("/login");
     }
     req.logIn(user, (err) => {
@@ -144,6 +147,7 @@ exports.getTokenVerify = (req, res, next) => {
   )
     .then(user => {
       console.log(user)
+      req.flash("errors", { msg: "Your email has been verified " });
       return res.redirect("../profile"); 
       }
     )
