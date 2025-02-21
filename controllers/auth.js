@@ -1,7 +1,6 @@
 const passport = require("passport");
-const nodemailer = require("nodemailer");
 const jwt = require("jsonwebtoken")
-const {sendEmail} = require('../controllers/verification')
+const sendEmail = require('../controllers/verification')
 const validator = require("validator");
 const User = require("../models/User");
 const UserVerification = require("../models/UserVerification");
@@ -100,6 +99,8 @@ exports.postSignup = (req, res, next) => {
     userName: req.body.userName,
     email: req.body.email,
     password: req.body.password,
+    isVerified: false,
+    token: null
   });
 
   User.findOne({
@@ -115,6 +116,7 @@ exports.postSignup = (req, res, next) => {
       const token = jwt.sign({userName: user.userName, email: user.email, password: user.password}, process.env.JWT_ACC_TOKEN, {expiresIn: '20m'})
       const activation_link = process.env.JWT_ACCTTIVATION_LINK + token
       sendEmail(user.userName,user.email, activation_link)
+      user.token = token
       return user
     })
     .then(async (user) => {
@@ -124,7 +126,7 @@ exports.postSignup = (req, res, next) => {
           if (err) {
             return next(err);
           }
-          res.redirect("/profile");
+          res.redirect("./signup/verify");
         });
       }
       catch (error){

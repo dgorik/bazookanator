@@ -1,7 +1,7 @@
 const transporterEmail = require('../config/sendemail');
 
-module.exports = {
-    sendEmail: async (userName, email, activation_link) => {
+
+    const sendEmail =  async (userName, email, activation_link) => {
         console.log(email)
         try {
         const mailOptions = {
@@ -20,6 +20,8 @@ module.exports = {
         } catch (err) {
             console.error('Error sending email:', err);
         }
-  },
-}
+  }
+
+module.exports = sendEmail
+
  
