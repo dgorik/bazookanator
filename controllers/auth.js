@@ -43,7 +43,8 @@ exports.postLogin = (req, res, next) => {
         return next(err);
       }
       req.flash("success", { msg: "Success! You are logged in." });
-      res.redirect(req.session.returnTo || "/profile");
+      res.render("profile");
+      //res.redirect(req.session.returnTo || "/profile");
     });
   })(req, res, next);
 };
@@ -115,8 +116,6 @@ exports.postSignup = (req, res, next) => {
       const activation_link = process.env.JWT_ACCTTIVATION_LINK + token
       sendEmail(user.userName,user.email, activation_link)
       return user
-      //res.redirect('/signup/verify')
-      //return user.save();
     })
     .then(async (user) => {
       try{
