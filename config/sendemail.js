@@ -1,20 +1,13 @@
 const nodemailer = require("nodemailer");
+require("dotenv").config({ path: "./config/.env" });
 
 
 const transporterEmail = nodemailer.createTransport({
     service: process.env.EMAIL_SERVICE,
-    port: 465,
-    secure: true, 
-    logger: true,
-    debug: true, 
-    secureConnection: false,
     auth: {
         user: process.env.EMAIL_USERNAME, // Set this environment variable
         pass: process.env.EMAIL_PASSWORD  // Set this environment variable
     },
-    tls: {
-        rejectUnAuthorized: true
-    }
 });
 
 transporterEmail.verify((error, success) => {

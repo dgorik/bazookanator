@@ -103,7 +103,7 @@ exports.postSignup = (req, res, next) => {
 
   User.findOne({
     $or: [{ email: req.body.email }, { userName: req.body.userName }],
-  })
+  }) //here we are checking if a user already exists in the database
     .then((existingUser) => {
       if (existingUser) {
         req.flash("errors", {
@@ -111,23 +111,26 @@ exports.postSignup = (req, res, next) => {
         });
         return res.redirect("../signup");
       }
+      const token = jwt.sign({userName: user.userName, email: user.email, password: user.password}, process.env.JWT_ACC_TOKEN, {expiresIn: '20m'})
+      const activation_link = process.env.JWT_ACCTTIVATION_LINK + token
+      sendEmail(user.userName,user.email, activation_link)
       return user
       //res.redirect('/signup/verify')
       //return user.save();
     })
-    .then( (user) => {
-      const token = jwt.sign({userName: user.userName, email: user.email, password: user.password}, process.env.JWT_ACC_TOKEN, {expiresIn: '20m'})
-      const activation_link = process.env.JWT_ACCTTIVATION_LINK + token
-      return sendEmail(user.userName,user.email, activation_link)
-
-    })
-    .then(() => {
-      req.logIn(user, (err) => {
-        if (err) {
-          return next(err);
-        }
-        res.redirect("/profile");
-      });
+    .then(async (user) => {
+      try{
+        await user.save()
+        req.logIn(user, (err) => {
+          if (err) {
+            return next(err);
+          }
+          res.redirect("/profile");
+        });
+      }
+      catch (error){
+        res.status(500).json({ message: error.message });
+      }
     })
     .catch((err) => {
       return next(err);
