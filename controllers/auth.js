@@ -137,4 +137,17 @@ exports.postSignup = (req, res, next) => {
 exports.getTokenVerify = (req, res, next) => {
   const { token } = req.query;
   console.log(token)
+  User.findOneAndUpdate(
+    {token: token},
+    {isVerified: true},
+    {new: true}
+  )
+    .then(user => {
+      console.log(user)
+      return res.redirect("../profile"); 
+      }
+    )
+    .catch((error) => {
+      console.log(error.message)
+    })
 }
