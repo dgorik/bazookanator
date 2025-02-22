@@ -3,7 +3,6 @@ const jwt = require("jsonwebtoken")
 const sendEmail = require('../controllers/verification')
 const validator = require("validator");
 const User = require("../models/User");
-const UserVerification = require("../models/UserVerification");
 
 exports.getLogin = (req, res) => {
   if (req.user) {
@@ -69,10 +68,6 @@ exports.getSignup = (req, res) => {
   });
 };
 
-exports.getSignupVerify = (req, res) => {
-  res.render("./signup/verify");
-},
-
 exports.postSignup = (req, res, next) => {
   const validationErrors = [];
   if (!validator.isEmail(req.body.email))
@@ -117,23 +112,29 @@ exports.postSignup = (req, res, next) => {
       const activation_link = process.env.JWT_ACCTTIVATION_LINK + token
       sendEmail(user.userName,user.email, activation_link)
       user.token = token
-      return user
+      user.save()
+      res.redirect('./signup/verify')
+      // return user
     })
-    .then(async (user) => {
-      try{
-        await user.save()
-        req.logIn(user, (err) => {
-          if (err) {
-            return next(err);
-          }
-          res.redirect("./signup/verify");
-        });
-      }
-      catch (error){
-        res.status(500).json({ message: error.message });
-      }
-    })
+    // .then(async (user) => {
+    //   try{
+    //     await user.save()
+    //     req.logIn(user, (err) => {
+    //       if (err) {
+    //         return next(err);
+    //       }
+    //     });
+    //   }
+    //   catch (error){
+    //     res.status(500).json({ message: error.message });
+    //   }
+    // })
     .catch((err) => {
       return next(err);
     });
 };
+
+exports.getTokenVerify = (req, res, next) => {
+  const { token } = req.query;
+  console.log(token)
+}

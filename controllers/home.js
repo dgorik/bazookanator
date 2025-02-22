@@ -22,4 +22,7 @@ module.exports = {
   getContactSuccess: (req, res) => {
     res.render("/contact_form_success.ejs");
   },
+  getEmailVerify: (req, res) => {
+    res.render("./signup/verify.ejs");
+  },
 };
