@@ -98,7 +98,6 @@ exports.postSignup = (req, res, next) => {
     email: req.body.email,
     password: req.body.password,
     isVerified: false,
-    token: null
   });
 
   User.findOne({
@@ -111,10 +110,10 @@ exports.postSignup = (req, res, next) => {
         });
         return res.redirect("/signup");
       }
-      const token = jwt.sign({userName: user.userName, email: user.email, password: user.password}, process.env.JWT_ACC_TOKEN, {expiresIn: '20m'})
+      const token = jwt.sign({userName: user.userName, email: user.email}, process.env.JWT_ACC_TOKEN, {expiresIn: '20m'})
       const activation_link = process.env.JWT_ACCTTIVATION_LINK + token
       sendEmail(user.userName,user.email, activation_link)
-      res.redirect('/signup/verify')
+      res.redirect('/signup/verify') //remove password from the jwt activation link
       // return user
     })
     // .then(async (user) => {
