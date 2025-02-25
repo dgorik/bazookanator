@@ -116,10 +116,8 @@ exports.postSignup = async (req, res, next) => {
           password: req.body.password,
         });
   
-       
         pending_user.save();
       
-  
         const token = jwt.sign({userName: pending_user.userName, email: pending_user.email, passwordID}, process.env.JWT_ACC_TOKEN, {expiresIn: '60m'})
         const activation_link = process.env.JWT_ACCTTIVATION_LINK + token
         sendEmail(pending_user.userName, pending_user.email, activation_link)
@@ -137,18 +135,19 @@ exports.getTokenVerify = async (req, res, next) => {
     const decoded = jwt.verify(token, process.env.JWT_ACC_TOKEN)
     const {userName, email, passwordID} = decoded
 
-    const user_password = await PendingUser.findOne({ passwordID: passwordID}).password
+    const pending_user = await PendingUser.findOne({ passwordID: passwordID})
 
-    console.log(user_password)
+    const user_password = pending_user.password
 
     const newUser = new User({
       userName,
       email,
-      user_password,
-      isVerified: true, // Set the user as verified
+      password: user_password,
+      isVerified: true // Set the user as verified
     });
 
     await newUser.save();
+    await PendingUser.remove({ passwordID: passwordID});
     req.flash("success", { msg: "Your email has been verified " });
     return res.render("index", { messages: req.flash() }); 
 
