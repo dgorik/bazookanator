@@ -1,7 +1,9 @@
 const passport = require("passport");
 const jwt = require("jsonwebtoken")
+const { v4: uuidv4 } = require('uuid');
 const sendEmail = require('../controllers/verification')
 const validator = require("validator");
+const client = require('../config/redis');
 const User = require("../models/User");
 
 exports.getLogin = (req, res) => {
@@ -71,7 +73,7 @@ exports.getSignup = (req, res) => {
   });
 };
 
-exports.postSignup = (req, res, next) => {
+exports.postSignup = async (req, res, next) => {
   const validationErrors = [];
   if (!validator.isEmail(req.body.email))
     validationErrors.push({ msg: "Please enter a valid email address." });
@@ -100,6 +102,8 @@ exports.postSignup = (req, res, next) => {
     isVerified: false,
   });
 
+  const passwordId = uuidv4();
+
   User.findOne({
     $or: [{ email: req.body.email }, { userName: req.body.userName }],
   }) //here we are checking if a user already exists in the database
@@ -110,7 +114,8 @@ exports.postSignup = (req, res, next) => {
         });
         return res.redirect("/signup");
       }
-      const token = jwt.sign({userName: user.userName, email: user.email}, process.env.JWT_ACC_TOKEN, {expiresIn: '20m'})
+
+      const token = jwt.sign({userName: user.userName, email: user.email, passwordId}, process.env.JWT_ACC_TOKEN, {expiresIn: '20m'})
       const activation_link = process.env.JWT_ACCTTIVATION_LINK + token
       sendEmail(user.userName,user.email, activation_link)
       res.redirect('/signup/verify') //remove password from the jwt activation link
@@ -138,17 +143,20 @@ exports.getTokenVerify = async (req, res, next) => {
   const { token } = req.query;
   try{
     const decoded = jwt.verify(token, process.env.JWT_ACC_TOKEN)
-    const {userName, email, password} = decoded
+    const {userName, email, passwordId} = decoded
+
+    console.log(decoded)
+
     const newUser = new User({
       userName,
       email,
-      password,
       isVerified: true, // Set the user as verified
     });
 
     await newUser.save();
     req.flash("success", { msg: "Your email has been verified " });
     return res.render("index", { messages: req.flash() }); 
+
   }
   catch(error){
     console.log(error.message)

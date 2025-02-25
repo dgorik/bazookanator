@@ -9,8 +9,10 @@ const flash = require("express-flash");
 const logger = require("morgan");
 const connectDB = require("./config/database");
 const connectEmail = require("./config/email");
+// const { client, connectRedis } = require('./config/redis')
 const mainRoutes = require("./routes/main");
 const postRoutes = require("./routes/posts");
+
 
 //Use .env file in config folder
 require("dotenv").config();
@@ -21,9 +23,17 @@ require("./config/passport")(passport);
 //Connect To Database
 connectDB();
 
+//Connect To Email
 connectEmail()
+
+//Connect To Redisx
+// connectRedis()
+// app.locals.redisClient = client;
+
 //Using EJS for views
 app.set("view engine", "ejs");
+
+//Using Redis to store a password ID for JWT token
 
 //Static Folder
 app.use(express.static("public"));
