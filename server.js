@@ -9,7 +9,6 @@ const flash = require("express-flash");
 const logger = require("morgan");
 const connectDB = require("./config/database");
 const connectEmail = require("./config/email");
-// const { client, connectRedis } = require('./config/redis')
 const mainRoutes = require("./routes/main");
 const postRoutes = require("./routes/posts");
 

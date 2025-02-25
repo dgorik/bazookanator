@@ -3,8 +3,8 @@ const jwt = require("jsonwebtoken")
 const { v4: uuidv4 } = require('uuid');
 const sendEmail = require('../controllers/verification')
 const validator = require("validator");
-const client = require('../config/redis');
 const User = require("../models/User");
+const PendingUser = require("../models/PendingUser");
 
 exports.getLogin = (req, res) => {
   if (req.user) {
@@ -95,61 +95,56 @@ exports.postSignup = async (req, res, next) => {
     gmail_remove_dots: false,
   });
 
-  const user = new User({
-    userName: req.body.userName,
-    email: req.body.email,
-    password: req.body.password,
-    isVerified: false,
-  });
-
-  const passwordId = uuidv4();
-
-  User.findOne({
-    $or: [{ email: req.body.email }, { userName: req.body.userName }],
-  }) //here we are checking if a user already exists in the database
-    .then((existingUser) => {
-      if (existingUser) {
-        req.flash("errors", {
-          msg: "Account with that email address or username already exists.",
+    User.findOne({
+      $or: [{ email: req.body.email }, { userName: req.body.userName }],
+    }) //here we are checking if a user already exists in the database
+      .then((existingUser) => {
+        if (existingUser) {
+          req.flash("errors", {
+            msg: "Account with that email address or username already exists.",
+          });
+          return res.redirect("/signup");
+        }
+      })
+      .then(() => {
+        const passwordID = uuidv4();
+  
+        const pending_user = new PendingUser({
+          userName: req.body.userName,
+          email: req.body.email,
+          passwordID: passwordID,
+          password: req.body.password,
         });
-        return res.redirect("/signup");
-      }
+  
+       
+        pending_user.save();
+      
+  
+        const token = jwt.sign({userName: pending_user.userName, email: pending_user.email, passwordID}, process.env.JWT_ACC_TOKEN, {expiresIn: '60m'})
+        const activation_link = process.env.JWT_ACCTTIVATION_LINK + token
+        sendEmail(pending_user.userName, pending_user.email, activation_link)
+        res.redirect('/signup/verify')
+      })
 
-      const token = jwt.sign({userName: user.userName, email: user.email, passwordId}, process.env.JWT_ACC_TOKEN, {expiresIn: '20m'})
-      const activation_link = process.env.JWT_ACCTTIVATION_LINK + token
-      sendEmail(user.userName,user.email, activation_link)
-      res.redirect('/signup/verify') //remove password from the jwt activation link
-      // return user
-    })
-    // .then(async (user) => {
-    //   try{
-    //     await user.save()
-    //     req.logIn(user, (err) => {
-    //       if (err) {
-    //         return next(err);
-    //       }
-    //     });
-    //   }
-    //   catch (error){
-    //     res.status(500).json({ message: error.message });
-    //   }
-    // })
-    .catch((err) => {
-      return next(err);
-    });
+      .catch((error) => {
+        console.log(error.message)
+      })
 };
 
 exports.getTokenVerify = async (req, res, next) => {
   const { token } = req.query;
   try{
     const decoded = jwt.verify(token, process.env.JWT_ACC_TOKEN)
-    const {userName, email, passwordId} = decoded
+    const {userName, email, passwordID} = decoded
 
-    console.log(decoded)
+    const user_password = await PendingUser.findOne({ passwordID: passwordID}).password
+
+    console.log(user_password)
 
     const newUser = new User({
       userName,
       email,
+      user_password,
       isVerified: true, // Set the user as verified
     });
 
