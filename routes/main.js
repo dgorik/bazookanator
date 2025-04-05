@@ -10,7 +10,7 @@ const { ensureAuth } = require("../middleware/auth");
 router.get("/", homeController.getIndex);
 router.get("/ready", homeController.getReady);
 router.get("/test", homeController.getTest);
-router.get("/first_report", powerbiController.getEmbeddedReport);
+router.get("/first_report", powerbiController.getToken);
 router.get("/second_report", homeController.getSecondReport);
 router.get("/profile", ensureAuth, postsController.getProfile);
 router.get("/contact_form_success", homeController.getContactSuccess);
