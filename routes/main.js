@@ -3,13 +3,14 @@ const router = express.Router();
 const authController = require("../controllers/auth");
 const homeController = require("../controllers/home");
 const postsController = require("../controllers/posts");
+const powerbiController = require("../controllers/powerbi");
 const { ensureAuth } = require("../middleware/auth");
 
 //Main Routes 
 router.get("/", homeController.getIndex);
 router.get("/ready", homeController.getReady);
 router.get("/test", homeController.getTest);
-router.get("/first_report", homeController.getFirstReport);
+router.get("/first_report", powerbiController.getEmbeddedReport);
 router.get("/second_report", homeController.getSecondReport);
 router.get("/profile", ensureAuth, postsController.getProfile);
 router.get("/contact_form_success", homeController.getContactSuccess);

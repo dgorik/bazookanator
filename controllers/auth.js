@@ -147,7 +147,7 @@ exports.getTokenVerify = async (req, res, next) => {
     });
 
     await newUser.save();
-    await PendingUser.remove({ passwordID: passwordID});
+    await PendingUser.deleteOne({ passwordID: passwordID});
     req.flash("success", { msg: "Your email has been verified " });
     return res.render("index", { messages: req.flash() }); 
 
