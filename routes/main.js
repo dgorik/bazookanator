@@ -3,14 +3,14 @@ const router = express.Router();
 const authController = require("../controllers/auth");
 const homeController = require("../controllers/home");
 const postsController = require("../controllers/posts");
-const powerbiController = require("../controllers/powerbi");
+const powerBIController = require('../controllers/powerbi');
 const { ensureAuth } = require("../middleware/auth");
 
 //Main Routes 
 router.get("/", homeController.getIndex);
 router.get("/ready", homeController.getReady);
 router.get("/test", homeController.getTest);
-router.get("/first_report", powerbiController.getToken);
+router.get("/first_report", homeController.getFirstReport);
 router.get("/second_report", homeController.getSecondReport);
 router.get("/profile", ensureAuth, postsController.getProfile);
 router.get("/contact_form_success", homeController.getContactSuccess);
@@ -33,5 +33,13 @@ router.post("/signup", authController.postSignup);
 //Route for signup-token verification
 router.get("/verify", authController.getTokenVerify);
 
+//PowerBI routes
+
+// router.get('/', powerBIController.loginPage);
+// router.get('/auth/login', powerBIController.initiateLogin);
+// router.get('/auth/callback', powerBIController.handleCallback);
+
+// router.use('/first_report', powerBIController.checkAndRefreshToken);
+// router.get('/first_report', powerBIController.firstReport);
 
 module.exports = router;
