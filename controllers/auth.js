@@ -41,7 +41,7 @@ exports.postLogin = (req, res, next) => {
       req.flash("errors", { msg: "Did you verify your email?" });
       return res.redirect("/login");
     }
-    req.logIn(user, (err) => {
+    req.logIn(user, (err) => { //this adds a user to the session 
       if (err) {
         return next(err);
       }
